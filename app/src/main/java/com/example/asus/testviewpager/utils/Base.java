@@ -1,5 +1,6 @@
 package com.example.asus.testviewpager.utils;
 
+import android.content.ComponentCallbacks;
 import android.content.Context;
 import android.support.v7.app.AppCompatActivity;
 import android.view.MotionEvent;
@@ -52,4 +53,8 @@ public class Base extends AppCompatActivity {
         return false;
     }
 
+    @Override
+    public void unregisterComponentCallbacks(ComponentCallbacks callback) {
+        super.unregisterComponentCallbacks(callback);
+    }
 }
