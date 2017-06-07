@@ -15,4 +15,5 @@
     <color name="wechat">#00D30D</color>
     <color name="red">#FF0000</color>
     <color name="style_color">#FF9212</color><!--主题色-->
+    <color name="transparent">#dadada</color>
 </resources>

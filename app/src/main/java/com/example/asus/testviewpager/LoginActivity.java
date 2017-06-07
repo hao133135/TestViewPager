@@ -1,5 +1,6 @@
 package com.example.asus.testviewpager;
 
+import android.app.Dialog;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;

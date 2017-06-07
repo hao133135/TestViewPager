@@ -53,8 +53,5 @@ public class Base extends AppCompatActivity {
         return false;
     }
 
-    @Override
-    public void unregisterComponentCallbacks(ComponentCallbacks callback) {
-        super.unregisterComponentCallbacks(callback);
-    }
+
 }
