@@ -1,0 +1,20 @@
+<resources>
+    <string name="app_name">TestViewPager</string>
+    <string name="ac_login_phone_edt_hint_str">请输入手机号码</string>
+    <string name="ac_login_password_edt_hint_str">请输入密码</string>
+    <string name="ac_register_phone_tv_str">手 机 号:</string>
+    <string name="login_code_hint_edt_str">请输入验证码</string>
+
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="fg_dirving_edit_hint_str">输入驾校或教练名称</string>
+    <string name="reset_pwd_new_pwd_hint">新 密 码：</string>
+    <string name="reset_pwd_hint">请输入新密码 6~15位区分大小写</string>
+    <string name="confirm_pwd_hint">确认密码：</string>
+    <string name="input_pwd_again_hint">再次输入密码</string>
+    <string name="appointment_success_str">预约考试成功！</string>
+    <string name="go_exam_progress_str">至考试记录查询预约进度</string>
+    <string name="input_teacher_name">请输入教练名称</string>
+    <string name="all_function_str">全部应用</string>
+    <string name="ac_register_password_tv_str" />
+    <string name="ac_register_registration_tv_str" />
+</resources>
