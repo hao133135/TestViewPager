@@ -8,6 +8,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
@@ -35,6 +36,14 @@ public class LoginActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent i =new Intent(LoginActivity.this,Retrievehepassword.class);
+                startActivity(i);
+            }
+        });
+        Button btn1 = (Button) findViewById(R.id.activity_login_commit_btn);
+        btn1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i =new Intent(LoginActivity.this,LifeActivity.class);
                 startActivity(i);
             }
         });

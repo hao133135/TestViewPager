@@ -12,6 +12,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
+import com.example.asus.testviewpager.Password.Retrievehepassword;
 import com.example.asus.testviewpager.utils.Base;
 import com.example.asus.testviewpager.utils.CountDownTimerUtils;
 
@@ -34,12 +35,28 @@ public class registeActivity extends AppCompatActivity{
              }
         });
         Button but1= (Button) findViewById(R.id.activity_register_commit_btn);
-        but1.setOnClickListener(new View.OnClickListener() {
+        String str1="";
+        EditText editText1 = (EditText) findViewById(R.id.activity_register_phone_edt);
+        str1 = editText1.getText().toString();
+        if (str1==null&&"".equals(str1) ){//判断用户名是否为空
+            but1.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    new AlertDialog.Builder(registeActivity.this).setView(R.layout.registe_message_verify_user).show();
+                }
+            });
+        }
+        Button bnt1 = (Button) findViewById(R.id.activity_register_commit_btn);
+        bnt1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                new AlertDialog.Builder(registeActivity.this).setView(R.layout.registe_message_verify_user).show();
+                Intent i =new Intent(registeActivity.this,LoginActivity.class);
+                startActivity(i);
             }
         });
+
+
+
     }
     @Override
     public boolean dispatchTouchEvent(MotionEvent ev) {

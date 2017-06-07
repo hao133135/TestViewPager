@@ -20,6 +20,7 @@
         <activity android:name=".Password.Retrievehepassword"></activity>
         <activity android:name=".Password.Login_reset_password"></activity>
         <activity android:name=".Password.password_two"></activity>
+        <activity android:name=".LifeActivity"></activity>
     </application>
 
 </manifest>
