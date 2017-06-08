@@ -37,6 +37,11 @@ public class MainActivity extends Activity {
     private TextView textView2;
     private TextView textView3;
 */
+
+    /**
+     * 引导页面
+     * @param savedInstanceState
+     */
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

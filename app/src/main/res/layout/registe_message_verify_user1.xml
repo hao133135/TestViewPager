@@ -29,7 +29,7 @@
     </LinearLayout>
 
     <ImageView
-        android:id="@+id/dialog_login_msg_rovertime"
+        android:id="@+id/dialog_login_msg_ruser"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
@@ -37,12 +37,12 @@
         android:background="@mipmap/login_password_cuowu" />
 
     <TextView
-        android:id="@+id/registe_message_verify_overtime"
+        android:id="@+id/registe_message_verify_user"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
         android:layout_marginTop="10dp"
-        android:text="验证码超时"
+        android:text="@string/registe_user1"
         android:textColor="@color/black"
         android:textSize="17sp" />
 

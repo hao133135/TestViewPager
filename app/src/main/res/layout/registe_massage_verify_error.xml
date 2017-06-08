@@ -42,9 +42,9 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
         android:layout_marginTop="10dp"
-        tools:text="验证码错误"
+        android:text="验证码错误"
         android:textColor="@color/black"
-        android:textSize="15sp" />
+        android:textSize="17sp" />
 
 
     <Button
@@ -54,6 +54,7 @@
         android:layout_gravity="center_horizontal"
         android:layout_marginTop="10dp"
         android:textColor="@color/white"
+        android:layout_marginBottom="35dp"
         android:background="@drawable/shape_ac_login_btn_back_fill"
         android:text="点击从新输入"
         android:textSize="16sp" />

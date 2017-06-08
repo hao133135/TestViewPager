@@ -4,6 +4,7 @@ import android.app.Dialog;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.view.MotionEvent;
 import android.view.View;
@@ -12,6 +13,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
+import com.example.asus.testviewpager.Bean.LoginBean;
 import com.example.asus.testviewpager.Password.Retrievehepassword;
 
 /**
@@ -19,10 +21,21 @@ import com.example.asus.testviewpager.Password.Retrievehepassword;
  */
 
 public class LoginActivity extends AppCompatActivity {
+
+    //用户信息
+    LoginBean loginBean = new LoginBean();
+  /*  private String phone;
+    private String password;*/
+
+    /**
+     * 登陆界面
+     * @param savedInstanceState
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.login);
+        //跳转注册界面
        TextView tex= (TextView) findViewById(R.id.activity_login_register_tv);
         tex.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -31,6 +44,7 @@ public class LoginActivity extends AppCompatActivity {
                 startActivity(i);
             }
         });
+        //跳转修改密码
        TextView rpwd= (TextView) findViewById(R.id.activity_login_forget_password_tv);
         rpwd.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -39,15 +53,43 @@ public class LoginActivity extends AppCompatActivity {
                 startActivity(i);
             }
         });
+        loginBean.setPhone("123");//需要从后台获取数据
+        loginBean.setPassword("123");//需要从后台获取数据
+
+        //跳转生活界面
         Button btn1 = (Button) findViewById(R.id.activity_login_commit_btn);
+        //获取登录界面phone和密码
+        final  EditText editText = (EditText) findViewById(R.id.activity_login_user_name_edt);
+        final EditText editText1 = (EditText) findViewById(R.id.activity_login_user_password_edt);
+        //登陆按钮监听
         btn1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent i =new Intent(LoginActivity.this,LifeActivity.class);
-                startActivity(i);
+            String lname=editText.getText().toString();
+            if(loginBean.getPhone().equals(lname)){
+                String lpassword=editText1.getText().toString();
+                if(loginBean.getPassword().equals(lpassword)) {
+                    Intent i = new Intent(LoginActivity.this, LifeActivity.class);
+                    startActivity(i);
+            }else{
+                    //密码错误提示
+                new AlertDialog.Builder(LoginActivity.this).setView(R.layout.login_message_password).show();
+            }
+        }else{
+                //手机错误提示
+            new AlertDialog.Builder(LoginActivity.this).setView(R.layout.login_message_phone).show();
+        }
+
+
             }
         });
     }
+
+    /**
+     * 隐藏键盘
+     * @param ev
+     * @return
+     */
     @Override
     public boolean dispatchTouchEvent(MotionEvent ev) {
         if (ev.getAction() == MotionEvent.ACTION_DOWN) {
