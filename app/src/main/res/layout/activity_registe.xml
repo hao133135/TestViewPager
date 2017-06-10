@@ -113,7 +113,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="学员" />
+                android:text="学员"
+                />
 
             <RadioButton
                 android:id="@+id/activity_register_teacher_rbt"
@@ -121,6 +122,12 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:text="教练" />
+            <RadioButton
+                android:id="@+id/activity_register_teacher_rbt_1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="个人" />
 
 
         </RadioGroup>

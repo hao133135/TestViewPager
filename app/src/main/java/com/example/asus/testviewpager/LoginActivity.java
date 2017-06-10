@@ -3,14 +3,19 @@ package com.example.asus.testviewpager;
 import android.app.Dialog;
 import android.content.Context;
 import android.content.Intent;
+import android.media.Image;
 import android.os.Bundle;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
+import android.view.Gravity;
+import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
+import android.widget.PopupWindow;
 import android.widget.TextView;
 
 import com.example.asus.testviewpager.Bean.LoginBean;
@@ -21,6 +26,8 @@ import com.example.asus.testviewpager.Password.Retrievehepassword;
  */
 
 public class LoginActivity extends AppCompatActivity {
+
+
 
     //用户信息
     LoginBean loginBean = new LoginBean();
@@ -57,12 +64,22 @@ public class LoginActivity extends AppCompatActivity {
         loginBean.setPassword("123");//需要从后台获取数据
 
         //跳转生活界面
-        Button btn1 = (Button) findViewById(R.id.activity_login_commit_btn);
+
         //获取登录界面phone和密码
         final  EditText editText = (EditText) findViewById(R.id.activity_login_user_name_edt);
         final EditText editText1 = (EditText) findViewById(R.id.activity_login_user_password_edt);
         //登陆按钮监听
-        btn1.setOnClickListener(new View.OnClickListener() {
+        /*Button login = (Button) findViewById(R.id.activity_login_commit_btn);
+        login.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                customDialog(v);
+            }
+        });*/
+
+
+       Button btn1 = (Button) findViewById(R.id.activity_login_commit_btn);
+       btn1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
             String lname=editText.getText().toString();
@@ -73,17 +90,45 @@ public class LoginActivity extends AppCompatActivity {
                     startActivity(i);
             }else{
                     //密码错误提示
-                new AlertDialog.Builder(LoginActivity.this).setView(R.layout.login_message_password).show();
+                    customDialogPassword(v);
             }
         }else{
                 //手机错误提示
-            new AlertDialog.Builder(LoginActivity.this).setView(R.layout.login_message_phone).show();
+                customDialogPhone(v);
         }
 
 
             }
         });
     }
+
+    public void customDialogPhone(View view){
+        final Dialog dialog = new Dialog(this);
+        dialog.setCancelable(true);
+        dialog.setContentView(R.layout.login_message_phone);
+        Button dialog_but = (Button) dialog.findViewById(R.id.dialog_login_new_input_btn);
+        dialog_but.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                dialog.dismiss();
+            }
+        });
+        dialog.show();
+    }
+    public void customDialogPassword(View view){
+        final Dialog dialog = new Dialog(this);
+        dialog.setCancelable(true);
+        dialog.setContentView(R.layout.login_message_password);
+        Button dialog_but = (Button) dialog.findViewById(R.id.dialog_login_new_input_btn);
+        dialog_but.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                dialog.dismiss();
+            }
+        });
+        dialog.show();
+    }
+
 
     /**
      * 隐藏键盘

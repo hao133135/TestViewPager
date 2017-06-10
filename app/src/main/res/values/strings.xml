@@ -17,9 +17,9 @@
     <string name="all_function_str">全部应用</string>
     <string name="ac_register_password_tv_str">密 码：</string>
     <string name="ac_register_registration_tv_str" />
-    <string name="registe_user">此用户已注册</string>
+    <string name="registe_user1">此用户已注册</string>
     <string name="login_password">密码错误</string>
     <string name="login_pgone">用户名不存在</string>
     <string name="register_user">用户注册</string>
-    <string name="registe_user1">用户名错误</string>
+    <string name="registe_user">用户名错误</string>
 </resources>
