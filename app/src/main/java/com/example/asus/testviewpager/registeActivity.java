@@ -4,6 +4,7 @@ import android.app.AlertDialog;
 import android.app.Dialog;
 import android.content.Context;
 import android.content.Intent;
+import android.media.Image;
 import android.os.Build;
 import android.os.Bundle;
 
@@ -13,7 +14,9 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
+import android.widget.CompoundButton;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.TextView;
@@ -34,6 +37,8 @@ import java.util.TimerTask;
 public class registeActivity extends AppCompatActivity {
     private Button mButton;
     private LoginBean bean = new LoginBean();
+
+
     /**
      * 注册
      * @param savedInstanceState
@@ -42,6 +47,35 @@ public class registeActivity extends AppCompatActivity {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_registe);
+        registeActivity.this.bean.setRole("3");
+        final RadioButton mButton1 = (RadioButton) findViewById(R.id.activity_register_type_student_rbt);//设置学员按钮
+        final RadioButton mButton2 = (RadioButton) findViewById(R.id.activity_register_teacher_rbt);//设置教练按钮
+        final RadioButton mButton3 = (RadioButton) findViewById(R.id.activity_register_personage_rbt);//设置个人按钮
+        mButton1.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                if(isChecked){
+                    registeActivity.this.bean.setRole("0");
+                }
+            }
+        });
+        mButton2.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                if(isChecked){
+                    registeActivity.this.bean.setRole("1");
+                }
+            }
+        });
+        mButton3.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                if(isChecked){
+                    registeActivity.this.bean.setRole("2");
+                }
+            }
+        });
+        registeActivity.this.bean.setPhone("12345678910");//需要从后台获取用户名
         final EditText editText = (EditText) findViewById(R.id.activity_register_phone_edt);
         //验证码按钮
         mButton = (Button) findViewById(R.id.activity_register_send_code_btn);
@@ -50,8 +84,10 @@ public class registeActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 String rname = editText.getText().toString();
-                if (rname.length()!=11 || rname.isEmpty()) {
-                    new AlertDialog.Builder(registeActivity.this).setView(R.layout.registe_message_verify_user1).show();
+                if (rname.length()!=11 || rname.isEmpty()) {//判断用户名是否正确
+                    customDialog_error(v);
+                }else if(rname.equals(registeActivity.this.bean.getPhone())){//判断用户名是否已注册
+                    customDialog_registered(v);
                 }else{
                     CountDownTimerUtils mCountDownTimerUtils = new CountDownTimerUtils(mButton, 6000, 1000);
                     mCountDownTimerUtils.start();
@@ -65,42 +101,40 @@ public class registeActivity extends AppCompatActivity {
         final EditText password = (EditText) findViewById(R.id.activity_register_password_edt);
         //获取验证码信息
         final EditText verify = (EditText) findViewById(R.id.activity_register_verification_code_edt);
-        //获取注册类型
-
 
         //注册按钮
         Button but1= (Button) findViewById(R.id.activity_register_commit_btn);
         but1.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-
-                    String rname = editText1.getText().toString();
                     String rverify = verify.getText().toString();
                     String mrverify = "1234";//需要从后台获取验证码
                     String rpassword = password.getText().toString();
-                    registeActivity.this.bean.setPhone("12345678910");//需要从后台获取用户名
-                    if(rname.isEmpty()||rpassword.isEmpty()||rverify.isEmpty()){//判断密码
+                    if(rpassword.isEmpty()||rverify.isEmpty()||registeActivity.this.bean.getRole().equals("3")){//判断信息是否完整
                         customDialog_information(v);
-                    }else if (rname.length()!=11 ){//判断用户名长度不为11
-                        customDialog_error(v);
-                    }else if(rname.equals(registeActivity.this.bean.getPhone())){//判断用户是否已注册
-                        customDialog_registered(v);
-                    }else if(rverify.equals(mrverify)){
+                    }else if(rverify.equals(mrverify)==false){//判断验证码是否正确
+                        customDialog_verify(v);
+                    }else{//成功后跳转
                         Intent i =new Intent(registeActivity.this,LoginActivity.class);
                         startActivity(i);
-                    }else{
-                        customDialog_verify(v);
                     }
                 }
             });
     }
-
+    //用户名错误
     public void customDialog_error(View view){
         final Dialog dialog = new Dialog(this);
         dialog.setCancelable(true);
         dialog.setContentView(R.layout.registe_message_verify_user);
         Button dialog_but = (Button) dialog.findViewById(R.id.dialog_login_new_input_btn);
+        ImageButton dialog_image = (ImageButton) dialog.findViewById(R.id.dialog_login_close_imageButton_user_error);
         dialog_but.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                dialog.dismiss();
+            }
+        });
+        dialog_image.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 dialog.dismiss();
@@ -108,12 +142,14 @@ public class registeActivity extends AppCompatActivity {
         });
         dialog.show();
     }
+    //用户已注册
     public void customDialog_registered(View view){
         final Dialog dialog = new Dialog(this);
         dialog.setCancelable(true);
         dialog.setContentView(R.layout.registe_message_verify_user1);
         Button dialog_but = (Button) dialog.findViewById(R.id.dialog_login_new_input_btn_1);
         Button dialog_but1 = (Button) dialog.findViewById(R.id.dialog_login_new_input_btn_5);
+        ImageButton dialog_image = (ImageButton) dialog.findViewById(R.id.dialog_login_close_imageButton_user_registered);
         dialog_but.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -127,14 +163,7 @@ public class registeActivity extends AppCompatActivity {
                 startActivity(i);
             }
         });
-        dialog.show();
-    }
-    public void customDialog_verify(View view){
-        final Dialog dialog = new Dialog(this);
-        dialog.setCancelable(true);
-        dialog.setContentView(R.layout.registe_massage_verify_error);
-        Button dialog_but = (Button) dialog.findViewById(R.id.dialog_login_new_input_btn_3);
-        dialog_but.setOnClickListener(new View.OnClickListener() {
+        dialog_image.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 dialog.dismiss();
@@ -142,12 +171,41 @@ public class registeActivity extends AppCompatActivity {
         });
         dialog.show();
     }
+    //验证码错误
+    public void customDialog_verify(View view){
+        final Dialog dialog = new Dialog(this);
+        dialog.setCancelable(true);
+        dialog.setContentView(R.layout.registe_massage_verify_error);
+        Button dialog_but = (Button) dialog.findViewById(R.id.dialog_login_new_input_btn_3);
+        ImageButton dialog_image = (ImageButton) dialog.findViewById(R.id.dialog_login_close_imageButton_error);
+        dialog_but.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                dialog.dismiss();
+            }
+        });
+        dialog_image.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                dialog.dismiss();
+            }
+        });
+        dialog.show();
+    }
+    //信息输入不完整
     public void customDialog_information(View view){
         final Dialog dialog = new Dialog(this);
         dialog.setCancelable(true);
         dialog.setContentView(R.layout.registe_massage_verify_password);
         Button dialog_but = (Button) dialog.findViewById(R.id.dialog_login_new_input_btn_2);
+        ImageButton dialog_image = (ImageButton) dialog.findViewById(R.id.dialog_login_close_imageButton_incomplete);
         dialog_but.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                dialog.dismiss();
+            }
+        });
+        dialog_image.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 dialog.dismiss();

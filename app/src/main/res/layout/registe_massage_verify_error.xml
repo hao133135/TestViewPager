@@ -19,8 +19,8 @@
             android:layout_height="wrap_content"
             android:layout_weight="1" />
 
-        <View
-            android:id="@+id/dialog_login_close_view"
+        <ImageButton
+            android:id="@+id/dialog_login_close_imageButton_error"
             android:layout_width="21dp"
             android:layout_height="21dp"
             android:layout_gravity="center_vertical"

@@ -76,8 +76,6 @@ public class LoginActivity extends AppCompatActivity {
                 customDialog(v);
             }
         });*/
-
-
        Button btn1 = (Button) findViewById(R.id.activity_login_commit_btn);
        btn1.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -102,12 +100,20 @@ public class LoginActivity extends AppCompatActivity {
         });
     }
 
+    //用户名不存在
     public void customDialogPhone(View view){
         final Dialog dialog = new Dialog(this);
         dialog.setCancelable(true);
         dialog.setContentView(R.layout.login_message_phone);
         Button dialog_but = (Button) dialog.findViewById(R.id.dialog_login_new_input_btn);
+        ImageButton dialog_image = (ImageButton) dialog.findViewById(R.id.dialog_login_close_user_error);
         dialog_but.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                dialog.dismiss();
+            }
+        });
+        dialog_image.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 dialog.dismiss();
@@ -115,12 +121,20 @@ public class LoginActivity extends AppCompatActivity {
         });
         dialog.show();
     }
+    //密码错误
     public void customDialogPassword(View view){
         final Dialog dialog = new Dialog(this);
         dialog.setCancelable(true);
         dialog.setContentView(R.layout.login_message_password);
         Button dialog_but = (Button) dialog.findViewById(R.id.dialog_login_new_input_btn);
+        ImageButton dialog_image = (ImageButton) dialog.findViewById(R.id.dialog_login_close_password_error);
         dialog_but.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                dialog.dismiss();
+            }
+        });
+        dialog_image.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 dialog.dismiss();
