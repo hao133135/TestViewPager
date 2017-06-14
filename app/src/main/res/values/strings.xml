@@ -22,4 +22,6 @@
     <string name="login_pgone">用户名不存在</string>
     <string name="register_user">用户注册</string>
     <string name="registe_user">用户名错误</string>
+    <string name="password_two_error">两次输入的密码不一致</string>
+    <string name="text_downloading">密码为空</string>
 </resources>

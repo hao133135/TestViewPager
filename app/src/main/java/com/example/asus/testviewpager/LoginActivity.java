@@ -67,8 +67,6 @@ public class LoginActivity extends AppCompatActivity {
                 startActivity(i);
             }
         });
-        loginBean.setPhone("123");//需要从后台获取数据
-        loginBean.setPassword("123");//需要从后台获取数据
 
         //跳转生活界面
 

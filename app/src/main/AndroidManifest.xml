@@ -21,6 +21,7 @@
         <activity android:name=".Password.Login_reset_password"></activity>
         <activity android:name=".Password.password_two"></activity>
         <activity android:name=".LifeActivity"></activity>
+        <activity android:name=".Password.Login_reset_newpassword"></activity>
     </application>
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
