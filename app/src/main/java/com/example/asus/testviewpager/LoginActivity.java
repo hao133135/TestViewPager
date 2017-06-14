@@ -5,6 +5,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.media.Image;
 import android.os.Bundle;
+import android.os.Looper;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.view.Gravity;
@@ -21,19 +22,25 @@ import android.widget.TextView;
 import com.example.asus.testviewpager.Bean.LoginBean;
 import com.example.asus.testviewpager.Password.Retrievehepassword;
 
+import org.apache.http.HttpResponse;
+import org.apache.http.client.HttpClient;
+import org.apache.http.client.methods.HttpGet;
+import org.apache.http.impl.client.DefaultHttpClient;
+import org.apache.http.util.EntityUtils;
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.io.IOException;
+
 /**
  * Created by asus on 2017/6/5.
  */
 
 public class LoginActivity extends AppCompatActivity {
-
-
-
     //用户信息
     LoginBean loginBean = new LoginBean();
   /*  private String phone;
     private String password;*/
-
     /**
      * 登陆界面
      * @param savedInstanceState
@@ -66,8 +73,6 @@ public class LoginActivity extends AppCompatActivity {
         //跳转生活界面
 
         //获取登录界面phone和密码
-        final  EditText editText = (EditText) findViewById(R.id.activity_login_user_name_edt);
-        final EditText editText1 = (EditText) findViewById(R.id.activity_login_user_password_edt);
         //登陆按钮监听
         /*Button login = (Button) findViewById(R.id.activity_login_commit_btn);
         login.setOnClickListener(new View.OnClickListener() {
@@ -78,30 +83,55 @@ public class LoginActivity extends AppCompatActivity {
         });*/
        Button btn1 = (Button) findViewById(R.id.activity_login_commit_btn);
        btn1.setOnClickListener(new View.OnClickListener() {
+           EditText editPhone = (EditText) findViewById(R.id.activity_login_user_name_edt);
+           EditText editPassword = (EditText) findViewById(R.id.activity_login_user_password_edt);
             @Override
             public void onClick(View v) {
-            String lname=editText.getText().toString();
-            if(loginBean.getPhone().equals(lname)){
-                String lpassword=editText1.getText().toString();
-                if(loginBean.getPassword().equals(lpassword)) {
-                    Intent i = new Intent(LoginActivity.this, LifeActivity.class);
-                    startActivity(i);
-            }else{
-                    //密码错误提示
-                    customDialogPassword(v);
-            }
-        }else{
-                //手机错误提示
-                customDialogPhone(v);
-        }
-
-
+                //Intent i = new Intent(LoginActivity.this, LifeActivity.class);
+                //startActivity(i);
+                new Thread(new Runnable() {
+                    @Override
+                    public void run() {
+                        String phone = editPhone.getText().toString();
+                        String password = editPassword.getText().toString();
+                        HttpClient httpClient = new DefaultHttpClient();
+                        HttpGet httpGet = new HttpGet("http://39.108.73.207/jyb_cp/account/login?phone="+phone+"&password="+password);
+                        try {
+                            HttpResponse httpResponse = httpClient.execute(httpGet);
+                            String key = EntityUtils.toString(httpResponse.getEntity());
+                            JSONObject result = new JSONObject(key);
+                            //"state": 1, "message": "登录成功", "data": {"address":"地址", "birthday":生日, "height":"身高", "id":编号, "imgpath":"头像地址", "interest":"兴趣爱好", "job":"工作", "nickname":"昵称", "password":"密码", "phone":"手机号", "role":"角色", "salary":薪水 "sex":"性别", "signature":"个性签名", "weight":"体重", "xingzuo":"星座" "region":"地区"}
+                            //"state":0, "message":"用户不存在" "data":“”
+                            //"state":0, "message":"密码错误" "data":“”
+                            int state = result.getInt("state");
+                            String message = result.getString("message");
+                            if(state==1){
+                                Intent i = new Intent(LoginActivity.this, LifeActivity.class);
+                                startActivity(i);
+                            }else if(state==0){
+                                if(message.equals("用户不存在")){
+                                    Looper.prepare();
+                                    customDialogPhone();
+                                    Looper.loop();
+                                }else if(message.equals("密码错误")){
+                                    Looper.prepare();
+                                    customDialogPassword();
+                                    Looper.loop();
+                                }
+                            }
+                        } catch (IOException e) {
+                            e.printStackTrace();
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                }).start();
             }
         });
     }
 
     //用户名不存在
-    public void customDialogPhone(View view){
+    public void customDialogPhone(){
         final Dialog dialog = new Dialog(this);
         dialog.setCancelable(true);
         dialog.setContentView(R.layout.login_message_phone);
@@ -122,7 +152,7 @@ public class LoginActivity extends AppCompatActivity {
         dialog.show();
     }
     //密码错误
-    public void customDialogPassword(View view){
+    public void customDialogPassword(){
         final Dialog dialog = new Dialog(this);
         dialog.setCancelable(true);
         dialog.setContentView(R.layout.login_message_password);

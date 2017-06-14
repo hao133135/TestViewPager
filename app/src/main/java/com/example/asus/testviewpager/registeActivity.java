@@ -183,7 +183,7 @@ public class registeActivity extends AppCompatActivity {
                 final String phone = edithone.getText().toString();
                 final String password = editPassword.getText().toString();
                 final String verCode = editVerCode.getText().toString();
-                final String url = "http://39.108.73.207/jyb_cp/account/regist";
+                //final String url = "http://39.108.73.207/jyb_cp/account/regist";
                 new Thread(new Runnable() {
                     @Override
                     public void run() {
@@ -192,7 +192,7 @@ public class registeActivity extends AppCompatActivity {
                         // 先封装一个 JSON 对象
                         //JSONObject param = new JSONObject();
                         HttpClient httpClient = new DefaultHttpClient();
-                        HttpGet httpGet = new HttpGet("http://39.108.73.207/jyb_cp/message/sendRegCode?phone="+phone+"&password="+password+"&role="+registeActivity.this.bean.getRole()+"&verCode="+verCode);
+                        HttpGet httpGet = new HttpGet("http://39.108.73.207/jyb_cp/account/regist?phone="+phone+"&password="+password+"&role="+registeActivity.this.bean.getRole()+"&verCode="+verCode);
 
                         try {
                             HttpResponse httpResponse = httpClient.execute(httpGet);
