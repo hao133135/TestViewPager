@@ -197,4 +197,5 @@
         android:text="注册"
         android:textColor="@color/ac_login_btn_text_color"
         android:textSize="18sp" />
+
 </LinearLayout>

@@ -7,6 +7,7 @@ import android.text.SpannableString;
 import android.text.style.ForegroundColorSpan;
 import android.widget.TextView;
 
+
 import com.example.asus.testviewpager.R;
 
 
