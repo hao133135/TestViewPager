@@ -41,6 +41,8 @@ import java.io.IOException;
 import java.util.Timer;
 import java.util.TimerTask;
 
+import butterknife.BindView;
+
 import static android.R.id.message;
 
 /**
@@ -48,13 +50,14 @@ import static android.R.id.message;
  */
 
 public class registeActivity extends AppCompatActivity {
+
     private Button mButton;
     private LoginBean bean = new LoginBean();
     private View view;
     private boolean state;
     private String sss;
     private String address = "http://39.108.73.207/jyb_cp/account/regist";
-    private int role = 3;
+    private String role = "3";
     private registePost post = new registePost();
 
 
@@ -67,7 +70,7 @@ public class registeActivity extends AppCompatActivity {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_registe);
-        registeActivity.this.bean.setRole(3);
+        registeActivity.this.bean.setRole("3");
         final RadioButton mButton1 = (RadioButton) findViewById(R.id.activity_register_type_student_rbt);//设置学员按钮
         final RadioButton mButton2 = (RadioButton) findViewById(R.id.activity_register_teacher_rbt);//设置教练按钮
         final RadioButton mButton3 = (RadioButton) findViewById(R.id.activity_register_personage_rbt);//设置个人按钮
@@ -75,7 +78,7 @@ public class registeActivity extends AppCompatActivity {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 if(isChecked){
-                    registeActivity.this.bean.setRole(0);
+                    registeActivity.this.bean.setRole("0");
                 }
             }
         });
@@ -83,7 +86,7 @@ public class registeActivity extends AppCompatActivity {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 if(isChecked){
-                    registeActivity.this.bean.setRole(1);
+                    registeActivity.this.bean.setRole("1");
                 }
             }
         });
@@ -91,7 +94,7 @@ public class registeActivity extends AppCompatActivity {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 if(isChecked){
-                    registeActivity.this.bean.setRole(2);
+                    registeActivity.this.bean.setRole("2");
                 }
             }
         });
@@ -111,7 +114,7 @@ public class registeActivity extends AppCompatActivity {
                         //第一步：创建HttpClient对象
                         HttpClient httpClient = new DefaultHttpClient();
                         //第二步：创建代表请求的对象,参数是访问的服务器地址
-                        HttpGet httpGet = new HttpGet("http://39.108.73.207/jyb_cp/message/sendRegCode?phone="+rname);
+                        HttpGet httpGet = new HttpGet("http://192.168.0.108:8080/jyb_cp/message/sendRegCode?phone="+rname);
 
                         try {
                             //第三步：执行请求，获取服务器发还的相应对象
@@ -191,8 +194,9 @@ public class registeActivity extends AppCompatActivity {
                         //request.setHeader("Content-Type", "application/x-www-form-urlencoded");
                         // 先封装一个 JSON 对象
                         //JSONObject param = new JSONObject();
+                        String role = registeActivity.this.bean.getRole();
                         HttpClient httpClient = new DefaultHttpClient();
-                        HttpGet httpGet = new HttpGet("http://39.108.73.207/jyb_cp/account/regist?phone="+phone+"&password="+password+"&role="+registeActivity.this.bean.getRole()+"&verCode="+verCode);
+                        HttpGet httpGet = new HttpGet("http://192.168.0.108:8080/jyb_cp/account/regist?phone="+phone+"&password="+password+"&role="+role+"&verCode="+verCode);
 
                         try {
                             HttpResponse httpResponse = httpClient.execute(httpGet);
@@ -233,11 +237,12 @@ public class registeActivity extends AppCompatActivity {
                                 Intent i = new Intent(registeActivity.this, LoginActivity.class);
                                 startActivity(i);
                             } else if (state == 0) {//验证码失败弹窗
-                                if (message.equals(msg2)) {
-                                    Looper.prepare();
-                                    customDialog_error();
-                                    Looper.loop();
-                                } else if (message.equals(msg3)) {
+                                Looper.prepare();
+                                customDialog_error();
+                                Looper.loop();
+                               /* if (message.equals(msg2)) {
+
+                                }*/ /*else if (message.equals(msg3)) {
                                     Looper.prepare();
                                     customDialog_error();
                                     Looper.loop();
@@ -265,7 +270,7 @@ public class registeActivity extends AppCompatActivity {
                                     Looper.prepare();
                                     customDialog_error();
                                     Looper.loop();
-                                }
+                                }*/
                             }
                         } catch (Exception e) {
                             e.printStackTrace();

@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="45dp"
+    android:background="@color/colorPrimary">
+
+    <Button
+        android:id="@+id/layout_diving_head_address_btn"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:background="@null"
+        android:drawableEnd="@drawable/shenghuo_dizhi"
+        android:paddingEnd="5dp"
+        android:paddingStart="5dp"
+        android:text="成都"
+
+        android:gravity="center"
+        android:textSize="15sp"
+        android:drawableRight="@drawable/shenghuo_dizhi" />
+
+    <EditText
+        android:id="@+id/layout_diving_head_search_edt"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_gravity="center_vertical"
+        android:layout_marginBottom="5dp"
+        android:layout_marginTop="5dp"
+        android:layout_weight="1"
+        android:textSize="15sp"
+        android:background="@drawable/shape_edt_solide_white"
+        android:drawableLeft="@mipmap/search"
+        android:gravity="center_vertical"
+        android:hint="@string/fg_dirving_edit_hint_str"
+        android:paddingLeft="10dp"
+
+        android:textColor="@color/black"
+        android:textColorHint="@color/ac_login_edt_hint_color" />
+
+    <ImageView
+        android:id="@+id/layout_diving_head_message_iv"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:paddingLeft="13dp"
+        android:paddingRight="13dp"
+        android:src="@drawable/shenghuo_xinxi" />
+
+</LinearLayout>
