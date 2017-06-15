@@ -32,7 +32,7 @@ public class LoginBean {
     private String address;
     private Object imgpath;
     private String signature;
-    private int role;
+    private String role;
     private String xingzuo;
     private String height;
     private String weight;
@@ -105,11 +105,11 @@ public class LoginBean {
         this.signature = signature;
     }
 
-    public int getRole() {
+    public String getRole() {
         return role;
     }
 
-    public void setRole(int role) {
+    public void setRole(String role) {
         this.role = role;
     }
 

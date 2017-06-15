@@ -28,4 +28,6 @@ dependencies {
     compile 'com.android.support:recyclerview-v7:26.0.0-alpha1'
     compile 'com.android.support:appcompat-v7:26.0.0-alpha1'
     compile 'org.jbundle.util.osgi.wrapped:org.jbundle.util.osgi.wrapped.org.apache.http.client:4.1.2'
+    compile 'com.jakewharton:butterknife:8.6.0'
+    apt 'com.jakewharton:butterknife-compiler:8.6.0'
 }
