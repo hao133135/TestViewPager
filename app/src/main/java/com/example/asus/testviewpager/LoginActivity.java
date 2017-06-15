@@ -3,20 +3,15 @@ package com.example.asus.testviewpager;
 import android.app.Dialog;
 import android.content.Context;
 import android.content.Intent;
-import android.media.Image;
 import android.os.Bundle;
 import android.os.Looper;
-import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
-import android.view.Gravity;
-import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
-import android.widget.PopupWindow;
 import android.widget.TextView;
 
 import com.example.asus.testviewpager.Bean.LoginBean;
@@ -104,7 +99,7 @@ public class LoginActivity extends AppCompatActivity {
                             int state = result.getInt("state");
                             String message = result.getString("message");
                             if(state==1){
-                                Intent i = new Intent(LoginActivity.this, LifeActivity.class);
+                                Intent i = new Intent(LoginActivity.this, lifeActivity.class);
                                 startActivity(i);
                             }else if(state==0){
                                 if(message.equals("用户不存在")){

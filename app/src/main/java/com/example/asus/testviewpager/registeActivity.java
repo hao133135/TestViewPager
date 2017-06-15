@@ -38,12 +38,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.IOException;
-import java.util.Timer;
-import java.util.TimerTask;
 
-import butterknife.BindView;
-
-import static android.R.id.message;
 
 /**
  * Created by asus on 2017/6/5.

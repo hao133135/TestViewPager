@@ -428,12 +428,12 @@
                     android:textSize="16sp" />
             </LinearLayout>
 
-            <com.edriving.view.MyListView
+           <!-- <com.edriving.view.MyListView
                 android:id="@+id/fragment_driving_hot_school_mlv"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="20dp"
-                android:layout_marginRight="22dp"></com.edriving.view.MyListView>
+                android:layout_marginRight="22dp"></com.edriving.view.MyListView>-->
 
         </LinearLayout>
 
