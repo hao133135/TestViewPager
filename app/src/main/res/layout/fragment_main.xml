@@ -29,7 +29,7 @@
             android:layout_weight="1"
             android:background="@null"
             android:drawablePadding="1dp"
-            android:drawableTop="@drawable/selector_ac_main_btn_life_img"
+            android:drawableTop="@drawable/fragment_button_style_life"
             android:text="生活"
             android:textColor="@drawable/selector_ac_main_bottom_btn_txt_color" />
 
@@ -40,7 +40,7 @@
             android:layout_weight="1"
             android:background="@null"
             android:drawablePadding="1dp"
-            android:drawableTop="@drawable/selector_ac_main_btn_driving_img"
+            android:drawableTop="@drawable/fragment_button_style_student"
             android:text="驾考"
             android:textColor="@drawable/selector_ac_main_bottom_btn_txt_color" />
 
@@ -51,7 +51,7 @@
             android:layout_weight="1"
             android:background="@null"
             android:drawablePadding="1dp"
-            android:drawableTop="@drawable/selector_ac_main_btn_message_img"
+            android:drawableTop="@drawable/fragment_button_style_message"
             android:text="消息"
             android:textColor="@drawable/selector_ac_main_bottom_btn_txt_color" />
 
@@ -62,7 +62,7 @@
             android:layout_weight="1"
             android:background="@null"
             android:drawablePadding="1dp"
-            android:drawableTop="@drawable/selector_ac_main_btn_mine_img"
+            android:drawableTop="@drawable/fragment_button_style_me"
             android:text="我"
             android:textColor="@drawable/selector_ac_main_bottom_btn_txt_color" />
     </LinearLayout>
