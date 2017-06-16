@@ -66,16 +66,16 @@ public class Login_reset_newpassword extends AppCompatActivity {
                     @Override
                     public void run() {
 
-
+                        //http://39.108.73.207
                         HttpClient httpClient = new DefaultHttpClient();
-                        HttpPost httpPost = new HttpPost("http://192.168.0.108:8080/jyb_cp/account/resetPwd");
-                        httpPost.setHeader("Content-Type", "application/x-www-form-urlencoded");
+                        HttpPost httpPost = new HttpPost("HTTP://192.168.0.108:8080/jyb_cp/account/resetPwd");
+                        httpPost.setHeader("Content-Type", "application/json;charset=utf-8");
                         try {
-                            /*JSONObject param = new JSONObject();
+                            JSONObject param = new JSONObject();
                             param.put("phone",phone);
                             param.put("newPassword",password1);
-                            param.put("verCode",code);*/
-                            StringEntity se = new StringEntity("phone="+phone+"&newPassword="+password1+"&verCode="+code);
+                            param.put("verCode",code);
+                            StringEntity se = new StringEntity(param.toString());
                             if(password1.equals(password2)){
                                 httpPost.setEntity(se);
                                 HttpResponse httpResponse = httpClient.execute(httpPost);
