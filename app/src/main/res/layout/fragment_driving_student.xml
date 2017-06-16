@@ -4,7 +4,8 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:fillViewport="true"
-    android:scrollbars="none">
+    android:scrollbars="none"
+    >
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -279,7 +280,8 @@
                         android:id="@+id/fragment_driving_recommend_left_school_iv"
                         android:layout_width="match_parent"
                         android:layout_height="0dp"
-                        android:layout_weight="1" />
+                        android:layout_weight="1"
+                        />
 
 
                     <TextView
@@ -485,12 +487,12 @@
                     android:textSize="16sp" />
             </LinearLayout>
 
-            <com.edriving.view.MyListView
+            <!--<com.edriving.view.MyListView
                 android:id="@+id/fragment_driving_hot_teacher_mlv"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="20dp"
-                android:layout_marginRight="22dp"></com.edriving.view.MyListView>
+                android:layout_marginRight="22dp"></com.edriving.view.MyListView>-->
 
         </LinearLayout>
 

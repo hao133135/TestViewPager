@@ -99,10 +99,10 @@ public class LoginActivity extends AppCompatActivity {
                             int state = result.getInt("state");
                             String message = result.getString("message");
                             if(state==1){
-                                Intent i = new Intent(LoginActivity.this, lifeActivity.class);
+                                Intent i = new Intent(LoginActivity.this, LifeActivity.class);
                                 startActivity(i);
                             }else if(state==0){
-                                if(message.equals("用户不存在")){
+                                if(message.equals("用户不存在")||message.equals("手机号不能为空")){
                                     Looper.prepare();
                                     customDialogPhone();
                                     Looper.loop();

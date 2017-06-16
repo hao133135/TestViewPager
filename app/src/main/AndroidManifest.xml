@@ -19,7 +19,7 @@
          <activity android:name=".registeActivity"></activity>
         <activity android:name=".Password.Retrievehepassword"></activity>
         <activity android:name=".Password.password_two"></activity>
-        <activity android:name=".lifeActivity"></activity>
+        <activity android:name=".LifeActivity"></activity>
         <activity android:name=".Password.Login_reset_newpassword"></activity>
         <activity android:name=".driving_coach.CoachActivity"></activity>
         <activity android:name=".driving_student.StudentActivity"></activity>
